@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Home</title>
+  <style>
+    /* General Body Styles */
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(60deg, #3a9bdc, #cbb0b0);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+    }
+
+    h1 {
+      color: #0056b3;
+      margin-top: 80px;
+      text-align: center;
+    }
+
+    /* Error Message */
+    .error {
+      color: red;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    /* Table Styles */
+    table {
+      width: 90%;
+      margin-top: 20px;
+      border-collapse: collapse;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    table th,
+    table td {
+      padding: 12px 15px;
+      text-align: left;
+      border: 1px solid #ddd;
+    }
+
+    table th {
+      background-color: #007bff;
+      color: white;
+    }
+
+    table td {
+      background-color: #f9f9f9;
+    }
+
+    table tr:nth-child(even) td {
+      background-color: #f1f1f1;
+    }
+
+    /* Action Button */
+    a {
+      text-decoration: none;
+      padding: 8px 12px;
+      background-color: #007bff;
+      color: white;
+      border-radius: 5px;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    a:hover {
+      background-color: #0056b3;
+      transform: scale(1.05);
+    }
+
+    /* Container to center content */
+    .table-container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 20px 0;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Admin Home</h1>
+
+  <div class="table-container">
+    {% if error %}
+    <div class="error">{{ error }}</div>
+    {% endif %}
+
+    <table>
+      <thead>
+        <tr>
+          <th>Index</th>
+          <th>User Wallet</th>
+          <th>Policy Type</th>
+          <th>Policy Id</th>
+          <th>Adhaar Number</th>
+          <th>Contact Number</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for i in range(l) %}
+        <tr>
+          <td>{{ i+1 }}</td> <!-- Use loop.index to display the index of the loop -->
+          <td>{{ data[i][0] }}</td>
+          <td>{{ data[i][1] }}</td>
+          <td>{{ data[i][2] }}</td>
+          <td>{{ data[i][3] }}</td>
+          <td>{{ data[i][4] }}</td>
+          <td><a href="viewApplicationDetails/{{data[i][0]}}"> Click</a></td> 
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+</body>
+
+</html>
