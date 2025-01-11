@@ -18,7 +18,8 @@
       justify-content: flex-start;
     }
 
-    h1, h2 {
+    h1,
+    h2 {
       color: #0056b3;
       margin-top: 60px;
       text-align: center;
@@ -141,6 +142,54 @@
       background-color: #218838;
     }
 
+    .action-buttons {
+      display: flex;
+      gap: 10px;
+      /* Space between buttons */
+      justify-content: center;
+      /* Center buttons within the cell */
+      align-items: center;
+    }
+
+    /* Status Buttons */
+    .status-btn {
+      padding: 10px 20px;
+      font-size: 14px;
+      font-weight: bold;
+      border-radius: 8px;
+      border: none;
+      text-align: center;
+      color: #fff;
+      text-decoration: none;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+    }
+
+    /* Approve Button */
+    .status-btn.approve {
+      background-color: #28a745;
+      /* Green */
+    }
+
+    .status-btn.approve:hover {
+      background-color: #218838;
+      /* Darker Green */
+      box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+      transform: scale(1.05);
+    }
+
+    /* Reject Button */
+    .status-btn.reject {
+      background-color: #dc3545;
+      /* Red */
+    }
+
+    .status-btn.reject:hover {
+      background-color: #c82333;
+      /* Darker Red */
+      box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+      transform: scale(1.05);
+    }
   </style>
 </head>
 
@@ -165,9 +214,7 @@
             <th>Aadhaar Number</th>
             <th>Phone Number</th>
             <th>Status</th>
-            {% if is_admin %}
             <th>Action</th>
-            {% endif %}
           </tr>
         </thead>
         <tbody>
@@ -177,15 +224,16 @@
             <td>{{ userdetails[2] }}</td>
             <td>{{ userdetails[3] }}</td>
             <td>{{ userdetails[4] }}</td>
-            <td>{{ application_status }}</td>
-            {% if is_admin %}
+            <td>{{ userdetails[6] }}</td>
             <td>
-              <a href="/approve/{{ userdetails[2] }}" class="status-btn approve">Approve</a>
-              <a href="/reject/{{ userdetails[2] }}" class="status-btn reject">Reject</a>
+              <div class="action-buttons">
+                <a href="/approve/{{ userdetails[0] }}" class="status-btn approve">Approve</a>
+                <a href="/reject/{{ userdetails[0] }}" class="status-btn reject">Reject</a>
+              </div>
             </td>
-            {% endif %}
           </tr>
         </tbody>
+        <span>{{ message }}</span>
       </table>
     </div>
 
@@ -250,7 +298,7 @@
             <td>{{policedetails[3]}}</td>
             <td>
               <a href="{{ url_for('static', filename=policedetails[4].replace('static/', '').replace('\\', '/')) }}"
-                  target="_blank" >View Photo
+                target="_blank">View Photo
               </a>
             </td>
           </tr>
@@ -277,7 +325,7 @@
             <td>{{ hospitaldetails[3] }}</td>
             <td>
               <a href="{{ url_for('static', filename=hospitaldetails[4].replace('static/', '').replace('\\', '/')) }}"
-                  target="_blank" >View Photo
+                target="_blank">View Photo
               </a>
             </td>
           </tr>

@@ -206,6 +206,15 @@ def uploadCertificateDetails():
         return render_template('Lifeinsurance.html', message3="Uploaded Files successfully.")
     except:
         return render_template('Lifeinsurance.html', message3="Problem uploading files.")
+    
+
+@app.route('/user-status')
+def userStatus():
+    wallet=session['userwallet']
+    contract,web3=connectWithContract(wallet,InsuranceClaimArtifactPath)
+    result=contract.functions.getApplicationStatus(wallet).call()
+    print(result)
+    return render_template('Lifeinsurance.html',result=result)
 
 @app.route('/admin')
 def adminPage():
@@ -404,13 +413,25 @@ def viewHospitalReports():
     print(reports)
     return render_template('hospitalreports.html',reports=reports)
 
+@app.route('/approve/<wallet>', methods=['GET'])
+def approve_application(wallet):
+    try:
+        contract, web3 = connectWithContract(0, InsuranceClaimArtifactPath)
+        txn_hash = contract.functions.updateApplicationStatus(wallet, "Approved").transact()
+        web3.eth.wait_for_transaction_receipt(txn_hash)
+        return render_template('admindashboard.html', message="Application approved successfully!")
+    except Exception as e:
+        return render_template('admindashboard.html', message="Error approving application: {str(e)}")
+
+@app.route('/reject/<wallet>', methods=['GET'])
+def reject_application(wallet):
+    try:
+        contract, web3 = connectWithContract(0, InsuranceClaimArtifactPath)
+        txn_hash = contract.functions.updateApplicationStatus(wallet, "Rejected").transact()
+        web3.eth.wait_for_transaction_receipt(txn_hash)
+        return render_template('admindashboard.html', message="Application approved successfully!")
+    except Exception as e:
+        return render_template('admindashboard.html', message="Error approving application: {str(e)}")
+        
 if __name__=="__main__":
     app.run(host='0.0.0.0',port=9000,debug=True)
-
-
-
-
-
-
-
-
