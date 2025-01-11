@@ -28,8 +28,7 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function",
-      "constant": true
+      "type": "function"
     },
     {
       "inputs": [
@@ -107,8 +106,7 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function",
-      "constant": true
+      "type": "function"
     },
     {
       "inputs": [
@@ -159,8 +157,7 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function",
-      "constant": true
+      "type": "function"
     },
     {
       "inputs": [
@@ -211,8 +208,7 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function",
-      "constant": true
+      "type": "function"
     },
     {
       "inputs": [
@@ -236,8 +232,7 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function",
-      "constant": true
+      "type": "function"
     },
     {
       "inputs": [],
@@ -255,8 +250,7 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function",
-      "constant": true
+      "type": "function"
     }
   ],
   "metadata": "{\"compiler\":{\"version\":\"0.8.19+commit.7dd6d404\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"username\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"password\",\"type\":\"string\"}],\"name\":\"userLogin\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"wallet\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"username\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"password\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"role\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"email\",\"type\":\"string\"}],\"name\":\"userSignUp\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"username\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"password\",\"type\":\"string\"}],\"name\":\"validateAdmin\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"viewAdmin\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"viewAllUsers\",\"outputs\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"_userAddress\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"_userName\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_userPassword\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_userRole\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_userEmail\",\"type\":\"string\"},{\"internalType\":\"bool\",\"name\":\"_exist\",\"type\":\"bool\"}],\"internalType\":\"struct userManagement.User[]\",\"name\":\"\",\"type\":\"tuple[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"username\",\"type\":\"string\"}],\"name\":\"viewUserByUsername\",\"outputs\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"_userAddress\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"_userName\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_userPassword\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_userRole\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_userEmail\",\"type\":\"string\"},{\"internalType\":\"bool\",\"name\":\"_exist\",\"type\":\"bool\"}],\"internalType\":\"struct userManagement.User\",\"name\":\"\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"wallet\",\"type\":\"address\"}],\"name\":\"viewUserByWallet\",\"outputs\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"_userAddress\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"_userName\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_userPassword\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_userRole\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_userEmail\",\"type\":\"string\"},{\"internalType\":\"bool\",\"name\":\"_exist\",\"type\":\"bool\"}],\"internalType\":\"struct userManagement.User\",\"name\":\"\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/userManagement.sol\":\"userManagement\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/userManagement.sol\":{\"keccak256\":\"0x2d7ad591b3bfea2326e8d0cedc0bb6b627d78b2f2d609c0cfb5ddaf22371a89a\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://1845beb507bb91d5f0bd97eb47b64cc67ce2ffcc432458c6b9a91bc4da623d30\",\"dweb:/ipfs/QmXwXxNJKWJUJfh2Fd78KZhPqiqGJvUvSM6hr1UWtBQrwb\"]}},\"version\":1}",
@@ -20338,8 +20332,7 @@
     }
   },
   "schemaVersion": "3.4.16",
-  "updatedAt": "2025-01-11T12:45:13.578Z",
-  "networkType": "ethereum",
+  "updatedAt": "2025-01-11T18:16:53.231Z",
   "devdoc": {
     "kind": "dev",
     "methods": {},

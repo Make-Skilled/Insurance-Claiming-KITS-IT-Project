@@ -93,8 +93,7 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function",
-      "constant": true
+      "type": "function"
     },
     {
       "inputs": [],
@@ -144,8 +143,7 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function",
-      "constant": true
+      "type": "function"
     },
     {
       "inputs": [
@@ -182,8 +180,7 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function",
-      "constant": true
+      "type": "function"
     },
     {
       "inputs": [
@@ -257,8 +254,7 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function",
-      "constant": true
+      "type": "function"
     },
     {
       "inputs": [],
@@ -298,8 +294,7 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function",
-      "constant": true
+      "type": "function"
     },
     {
       "inputs": [
@@ -373,8 +368,7 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function",
-      "constant": true
+      "type": "function"
     },
     {
       "inputs": [],
@@ -414,8 +408,7 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function",
-      "constant": true
+      "type": "function"
     },
     {
       "inputs": [
@@ -499,8 +492,7 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function",
-      "constant": true
+      "type": "function"
     },
     {
       "inputs": [],
@@ -545,8 +537,7 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function",
-      "constant": true
+      "type": "function"
     },
     {
       "inputs": [
@@ -635,8 +626,7 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function",
-      "constant": true
+      "type": "function"
     },
     {
       "inputs": [],
@@ -686,8 +676,7 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function",
-      "constant": true
+      "type": "function"
     },
     {
       "inputs": [
@@ -776,8 +765,7 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function",
-      "constant": true
+      "type": "function"
     },
     {
       "inputs": [],
@@ -827,8 +815,7 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function",
-      "constant": true
+      "type": "function"
     }
   ],
   "metadata": "{\"compiler\":{\"version\":\"0.8.19+commit.7dd6d404\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"wallet\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"bankName\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"accountNumber\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"ifscCode\",\"type\":\"string\"}],\"name\":\"addBankDetails\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"wallet\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"policyPaperPath\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"policyPaperHash\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"reportPaperPath\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"reportPaperHash\",\"type\":\"string\"}],\"name\":\"addCertificateDetails\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"policyId\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"doctorName\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"doctorContactNumber\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"doctorReportPath\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"doctorReportHash\",\"type\":\"string\"}],\"name\":\"addHospitalDetails\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"wallet\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"nomineeName\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"nomineeAdhar\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"nomineePhoneNumber\",\"type\":\"string\"}],\"name\":\"addNomineeDetails\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"policyId\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"policeName\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"policeContactNumber\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"policeFIRPath\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"policeFIRHash\",\"type\":\"string\"}],\"name\":\"addPoliceDetails\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"wallet\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"insuranceType\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"policyId\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"adharNumber\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"phoneNumber\",\"type\":\"string\"}],\"name\":\"addUserDetails\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"wallet\",\"type\":\"address\"}],\"name\":\"getApplicationStatus\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"wallet\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"newStatus\",\"type\":\"string\"}],\"name\":\"updateApplicationStatus\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"viewAllBankDetails\",\"outputs\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"_wallet\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"_bankName\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_accountNumber\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_ifscCode\",\"type\":\"string\"},{\"internalType\":\"bool\",\"name\":\"_exist\",\"type\":\"bool\"}],\"internalType\":\"struct InsuranceClaim.BankDetails[]\",\"name\":\"\",\"type\":\"tuple[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"viewAllCertificateDetails\",\"outputs\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"_wallet\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"_policyPaperPath\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_policyPaperHash\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_reportPaperPath\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_reportPaperHash\",\"type\":\"string\"},{\"internalType\":\"bool\",\"name\":\"_exist\",\"type\":\"bool\"}],\"internalType\":\"struct InsuranceClaim.certificateDetails[]\",\"name\":\"\",\"type\":\"tuple[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"viewAllHospitalDetails\",\"outputs\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"_wallet\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"_policyId\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_doctorName\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_doctorContactNumber\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_doctorreportPath\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_doctorreportHash\",\"type\":\"string\"},{\"internalType\":\"bool\",\"name\":\"_exist\",\"type\":\"bool\"}],\"internalType\":\"struct InsuranceClaim.HospitalDetails[]\",\"name\":\"\",\"type\":\"tuple[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"viewAllNomineeDetails\",\"outputs\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"_wallet\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"_nomineeName\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_nomineeAdhar\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_nomineePhoneNumber\",\"type\":\"string\"},{\"internalType\":\"bool\",\"name\":\"_exist\",\"type\":\"bool\"}],\"internalType\":\"struct InsuranceClaim.NomineeDetails[]\",\"name\":\"\",\"type\":\"tuple[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"viewAllPoliceDetails\",\"outputs\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"_wallet\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"_policyId\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_policeName\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_policeContactNumber\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_policeFIRPath\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_policeFIRHash\",\"type\":\"string\"},{\"internalType\":\"bool\",\"name\":\"_exist\",\"type\":\"bool\"}],\"internalType\":\"struct InsuranceClaim.PoliceDetails[]\",\"name\":\"\",\"type\":\"tuple[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"viewAllUserDetails\",\"outputs\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"_wallet\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"_insuranceType\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_policyId\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_adharNumber\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_phoneNumber\",\"type\":\"string\"},{\"internalType\":\"bool\",\"name\":\"_exist\",\"type\":\"bool\"},{\"internalType\":\"string\",\"name\":\"_status\",\"type\":\"string\"}],\"internalType\":\"struct InsuranceClaim.UserDetails[]\",\"name\":\"\",\"type\":\"tuple[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"wallet\",\"type\":\"address\"}],\"name\":\"viewBankDetailsByWallet\",\"outputs\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"_wallet\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"_bankName\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_accountNumber\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_ifscCode\",\"type\":\"string\"},{\"internalType\":\"bool\",\"name\":\"_exist\",\"type\":\"bool\"}],\"internalType\":\"struct InsuranceClaim.BankDetails\",\"name\":\"\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"wallet\",\"type\":\"address\"}],\"name\":\"viewCertificateDetailsByWallet\",\"outputs\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"_wallet\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"_policyPaperPath\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_policyPaperHash\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_reportPaperPath\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_reportPaperHash\",\"type\":\"string\"},{\"internalType\":\"bool\",\"name\":\"_exist\",\"type\":\"bool\"}],\"internalType\":\"struct InsuranceClaim.certificateDetails\",\"name\":\"\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"policyId\",\"type\":\"string\"}],\"name\":\"viewHospitalDetailsByPolicyId\",\"outputs\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"_wallet\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"_policyId\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_doctorName\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_doctorContactNumber\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_doctorreportPath\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_doctorreportHash\",\"type\":\"string\"},{\"internalType\":\"bool\",\"name\":\"_exist\",\"type\":\"bool\"}],\"internalType\":\"struct InsuranceClaim.HospitalDetails\",\"name\":\"\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"wallet\",\"type\":\"address\"}],\"name\":\"viewNomineeDetailsByWallet\",\"outputs\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"_wallet\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"_nomineeName\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_nomineeAdhar\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_nomineePhoneNumber\",\"type\":\"string\"},{\"internalType\":\"bool\",\"name\":\"_exist\",\"type\":\"bool\"}],\"internalType\":\"struct InsuranceClaim.NomineeDetails\",\"name\":\"\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"policyId\",\"type\":\"string\"}],\"name\":\"viewPoliceDetailsByPolicyId\",\"outputs\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"_wallet\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"_policyId\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_policeName\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_policeContactNumber\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_policeFIRPath\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_policeFIRHash\",\"type\":\"string\"},{\"internalType\":\"bool\",\"name\":\"_exist\",\"type\":\"bool\"}],\"internalType\":\"struct InsuranceClaim.PoliceDetails\",\"name\":\"\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"wallet\",\"type\":\"address\"}],\"name\":\"viewUserDetailsByWallet\",\"outputs\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"_wallet\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"_insuranceType\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_policyId\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_adharNumber\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_phoneNumber\",\"type\":\"string\"},{\"internalType\":\"bool\",\"name\":\"_exist\",\"type\":\"bool\"},{\"internalType\":\"string\",\"name\":\"_status\",\"type\":\"string\"}],\"internalType\":\"struct InsuranceClaim.UserDetails\",\"name\":\"\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/InsuranceClaim.sol\":\"InsuranceClaim\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/InsuranceClaim.sol\":{\"keccak256\":\"0xaca8d5596825212d28203cba1f35bccecca52b24b124e6ae7abcf860e597f2b7\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://cbc3878f0b8e54a31d92854bad24a85b34ac73a01b6f5632df0c1fb69b735d04\",\"dweb:/ipfs/QmX21swYVzeTwhw1fcYfsxLEpiiQHjgVMEUsHQNeEvJFy6\"]}},\"version\":1}",
@@ -41500,8 +41487,7 @@
     }
   },
   "schemaVersion": "3.4.16",
-  "updatedAt": "2025-01-11T12:45:13.983Z",
-  "networkType": "ethereum",
+  "updatedAt": "2025-01-11T18:16:53.198Z",
   "devdoc": {
     "kind": "dev",
     "methods": {},

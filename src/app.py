@@ -212,9 +212,9 @@ def uploadCertificateDetails():
 def userStatus():
     wallet=session['userwallet']
     contract,web3=connectWithContract(wallet,InsuranceClaimArtifactPath)
-    result=contract.functions.getApplicationStatus(wallet).call()
-    print(result)
-    return render_template('Lifeinsurance.html',result=result)
+    response=contract.functions.viewUserDetailsByWallet(wallet).call()
+    print(response)
+    return render_template('applicationstatus.html',response=response)
 
 @app.route('/admin')
 def adminPage():
@@ -431,7 +431,7 @@ def reject_application(wallet):
         web3.eth.wait_for_transaction_receipt(txn_hash)
         return render_template('admindashboard.html', message="Application approved successfully!")
     except Exception as e:
-        return render_template('admindashboard.html', message="Error approving application: {str(e)}")
+        return render_template('admindashboard.html', message=f"Error approving application: {str(e)}")
         
 if __name__=="__main__":
     app.run(host='0.0.0.0',port=9000,debug=True)
