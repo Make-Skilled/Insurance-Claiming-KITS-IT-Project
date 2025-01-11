@@ -65,8 +65,11 @@ contract InsuranceClaim {
       bool _exist;
     }
 
-    mapping(address => PoliceDetails) policeDetails;
-    address[] policeAddresses;
+    // mapping(address => PoliceDetails) policeDetails;
+    // address[] policeAddresses;
+
+    mapping(string => PoliceDetails) policeDetails;  // Use policyId as the key
+    string[] policeAddresses;  // Store policyId instead of wallet
 
     struct HospitalDetails{
       address _wallet;
@@ -78,8 +81,11 @@ contract InsuranceClaim {
       bool _exist;
     }
 
-    mapping(address => HospitalDetails) hospitalDetails;
-    address[] hospitalAddresses;
+    // mapping(address => HospitalDetails) hospitalDetails;
+    // address[] hospitalAddresses;
+
+    mapping(string => HospitalDetails) hospitalDetails;  // Use policyId as the key
+    string[] hospitalAddresses;  // Store policyId instead of wallet
 
     // UserDetails Functions
     function addUserDetails(
@@ -108,6 +114,20 @@ contract InsuranceClaim {
             userArray[i] = userDetails[userAddresses[i]];
         }
         return userArray;
+    }
+
+    function updateApplicationStatus(address wallet, string memory newStatus) public {
+        require(msg.sender == admin, "Only admin can update the status");
+        require(userDetails[wallet]._exist, "User does not exist");
+        require(keccak256(bytes(newStatus)) == keccak256(bytes("Approved")) || keccak256(bytes(newStatus)) == keccak256(bytes("Rejected")), "Invalid status");
+
+        userDetails[wallet]._status = newStatus;
+    }
+
+    // Get Application Status for a user
+    function getApplicationStatus(address wallet) public view returns (string memory) {
+        require(userDetails[wallet]._exist, "No record with this wallet");
+        return userDetails[wallet]._status;
     }
 
     // NomineeDetails Functions
@@ -202,79 +222,150 @@ contract InsuranceClaim {
         return certificateArray;
     }
 
+    // function addPoliceDetails(
+    //     address wallet,
+    //     string memory policyId,
+    //     string memory policeName,
+    //     string memory policeContactNumber,
+    //     string memory policeFIRPath,
+    //     string memory policeFIRHash
+    // ) public {
+    //     require(!policeDetails[wallet]._exist, "Details Already Existed");
+
+    //     PoliceDetails memory new_police = PoliceDetails(
+    //         wallet,
+    //         policyId,
+    //         policeName,
+    //         policeContactNumber,
+    //         policeFIRPath,
+    //         policeFIRHash,
+    //         true
+    //     );
+    //     policeDetails[wallet] = new_police;
+    //     policeAddresses.push(wallet);
+    // }
+
+    // function viewPoliceDetailsByWallet(address wallet) public view returns (PoliceDetails memory) {
+    //     require(policeDetails[wallet]._exist, "No record with this wallet");
+    //     return policeDetails[wallet];
+    // }
+
+    // function viewAllPoliceDetails() public view returns (PoliceDetails[] memory) {
+    //     PoliceDetails[] memory policeArray = new PoliceDetails[](policeAddresses.length);
+
+    //     for (uint i = 0; i < policeAddresses.length; i++) {
+    //         policeArray[i] = policeDetails[policeAddresses[i]];
+    //     }
+    //     return policeArray;
+    // }
+
+    // // HospitalDetails Functions
+    // function addHospitalDetails(
+    //     address wallet,
+    //     string memory policyId,
+    //     string memory doctorName,
+    //     string memory doctorContactNumber,
+    //     string memory doctorReportPath,
+    //     string memory doctorReportHash
+    // ) public {
+    //     require(!hospitalDetails[wallet]._exist, "Details Already Existed");
+
+    //     HospitalDetails memory new_hospital = HospitalDetails(
+    //         wallet,
+    //         policyId,
+    //         doctorName,
+    //         doctorContactNumber,
+    //         doctorReportPath,
+    //         doctorReportHash,
+    //         true
+    //     );
+    //     hospitalDetails[wallet] = new_hospital;
+    //     hospitalAddresses.push(wallet);
+    // }
+
+    // function viewHospitalDetailsByWallet(address wallet) public view returns (HospitalDetails memory) {
+    //     require(hospitalDetails[wallet]._exist, "No record with this wallet");
+    //     return hospitalDetails[wallet];
+    // }
+
+    // function viewAllHospitalDetails() public view returns (HospitalDetails[] memory) {
+    //     HospitalDetails[] memory hospitalArray = new HospitalDetails[](hospitalAddresses.length);
+
+    //     for (uint i = 0; i < hospitalAddresses.length; i++) {
+    //         hospitalArray[i] = hospitalDetails[hospitalAddresses[i]];
+    //     }
+    //     return hospitalArray;
+    // }
     function addPoliceDetails(
-        address wallet,
-        string memory policyId,
-        string memory policeName,
-        string memory policeContactNumber,
-        string memory policeFIRPath,
-        string memory policeFIRHash
-    ) public {
-        require(!policeDetails[wallet]._exist, "Details Already Existed");
+    string memory policyId, // Use policyId instead of wallet
+    string memory policeName,
+    string memory policeContactNumber,
+    string memory policeFIRPath,
+    string memory policeFIRHash
+) public {
+    require(!policeDetails[policyId]._exist, "Details Already Existed");
 
-        PoliceDetails memory new_police = PoliceDetails(
-            wallet,
-            policyId,
-            policeName,
-            policeContactNumber,
-            policeFIRPath,
-            policeFIRHash,
-            true
-        );
-        policeDetails[wallet] = new_police;
-        policeAddresses.push(wallet);
+    PoliceDetails memory new_police = PoliceDetails(
+        msg.sender, // wallet (msg.sender) is now implied as it's the sender
+        policyId,
+        policeName,
+        policeContactNumber,
+        policeFIRPath,
+        policeFIRHash,
+        true
+    );
+    policeDetails[policyId] = new_police; // Use policyId as the key
+    policeAddresses.push(policyId); // Store policyId instead of wallet
+}
+function viewPoliceDetailsByPolicyId(string memory policyId) public view returns (PoliceDetails memory) {
+    require(policeDetails[policyId]._exist, "No record with this policyId");
+    return policeDetails[policyId];
+}
+function viewAllPoliceDetails() public view returns (PoliceDetails[] memory) {
+    PoliceDetails[] memory policeArray = new PoliceDetails[](policeAddresses.length);
+
+    for (uint i = 0; i < policeAddresses.length; i++) {
+        policeArray[i] = policeDetails[policeAddresses[i]]; // Access police details by policyId
     }
+    return policeArray;
+}
 
-    function viewPoliceDetailsByWallet(address wallet) public view returns (PoliceDetails memory) {
-        require(policeDetails[wallet]._exist, "No record with this wallet");
-        return policeDetails[wallet];
+function addHospitalDetails(
+    string memory policyId, // Use policyId instead of wallet
+    string memory doctorName,
+    string memory doctorContactNumber,
+    string memory doctorReportPath,
+    string memory doctorReportHash
+) public {
+    require(!hospitalDetails[policyId]._exist, "Details Already Existed");
+
+    HospitalDetails memory new_hospital = HospitalDetails(
+        msg.sender, // wallet (msg.sender) is now implied as it's the sender
+        policyId,
+        doctorName,
+        doctorContactNumber,
+        doctorReportPath,
+        doctorReportHash,
+        true
+    );
+    hospitalDetails[policyId] = new_hospital; // Use policyId as the key
+    hospitalAddresses.push(policyId); // Store policyId instead of wallet
+}
+
+function viewHospitalDetailsByPolicyId(string memory policyId) public view returns (HospitalDetails memory) {
+    require(hospitalDetails[policyId]._exist, "No record with this policyId");
+    return hospitalDetails[policyId];
+}
+
+function viewAllHospitalDetails() public view returns (HospitalDetails[] memory) {
+    HospitalDetails[] memory hospitalArray = new HospitalDetails[](hospitalAddresses.length);
+
+    for (uint i = 0; i < hospitalAddresses.length; i++) {
+        hospitalArray[i] = hospitalDetails[hospitalAddresses[i]]; // Access hospital details by policyId
     }
+    return hospitalArray;
+}
 
-    function viewAllPoliceDetails() public view returns (PoliceDetails[] memory) {
-        PoliceDetails[] memory policeArray = new PoliceDetails[](policeAddresses.length);
 
-        for (uint i = 0; i < policeAddresses.length; i++) {
-            policeArray[i] = policeDetails[policeAddresses[i]];
-        }
-        return policeArray;
-    }
-
-    // HospitalDetails Functions
-    function addHospitalDetails(
-        address wallet,
-        string memory policyId,
-        string memory doctorName,
-        string memory doctorContactNumber,
-        string memory doctorReportPath,
-        string memory doctorReportHash
-    ) public {
-        require(!hospitalDetails[wallet]._exist, "Details Already Existed");
-
-        HospitalDetails memory new_hospital = HospitalDetails(
-            wallet,
-            policyId,
-            doctorName,
-            doctorContactNumber,
-            doctorReportPath,
-            doctorReportHash,
-            true
-        );
-        hospitalDetails[wallet] = new_hospital;
-        hospitalAddresses.push(wallet);
-    }
-
-    function viewHospitalDetailsByWallet(address wallet) public view returns (HospitalDetails memory) {
-        require(hospitalDetails[wallet]._exist, "No record with this wallet");
-        return hospitalDetails[wallet];
-    }
-
-    function viewAllHospitalDetails() public view returns (HospitalDetails[] memory) {
-        HospitalDetails[] memory hospitalArray = new HospitalDetails[](hospitalAddresses.length);
-
-        for (uint i = 0; i < hospitalAddresses.length; i++) {
-            hospitalArray[i] = hospitalDetails[hospitalAddresses[i]];
-        }
-        return hospitalArray;
-    }
 }
 

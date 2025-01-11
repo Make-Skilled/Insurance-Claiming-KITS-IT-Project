@@ -10,13 +10,13 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 20px;
-            background: linear-gradient(60deg, #6a5acd, #dcdcdc);
+            background: linear-gradient(60deg, #3a9bdc, #cbb0b0); /* Background color update */
             color: #333;
         }
 
         h1 {
             text-align: center;
-            color: #4b0082;
+            color: #007bff; /* Title color update */
         }
 
         .report-table {
@@ -35,7 +35,7 @@
         }
 
         .report-table th {
-            background-color: #4b0082;
+            background-color: #007bff; /* Header background color update */
             color: white;
         }
 
@@ -59,7 +59,7 @@
             display: inline-block;
             padding: 12px 24px;
             margin-top: 20px;
-            background-color: #4b0082;
+            background-color: #007bff; /* Button color update */
             color: white;
             text-align: center;
             text-decoration: none;
@@ -69,7 +69,7 @@
         }
 
         .back-button:hover {
-            background-color: #6a5acd;
+            background-color: #0056b3; /* Hover effect update */
         }
 
         /* Center the button at the bottom of the page */
@@ -85,7 +85,7 @@
 
 <body>
     <div>
-        <h1>Police Uploaded Reports</h1>
+        <h1>Hospital Uploaded Reports</h1>
         {% if error %}
         <p class="no-reports">{{ error }}</p>
         {% elif reports and reports|length > 0 %}
@@ -122,7 +122,7 @@
 
     <!-- Centered Back Button -->
     <div class="button-container">
-        <a href="/policeHome" class="back-button">Back to Police Home</a>
+        <a href="/hospitalHome" class="back-button">Back to Hospital Home</a>
     </div>
 
 </body>

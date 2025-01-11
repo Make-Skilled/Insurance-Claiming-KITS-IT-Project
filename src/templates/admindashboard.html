@@ -36,32 +36,26 @@
       margin-bottom: 20px;
     }
 
-    /* User Details Styles */
-    .user-details {
-      width: 80%;
-      max-width: 1000px;
-      background-color: white;
+    /* Container for User Details and Other Information */
+    .content-container {
+      width: 90%;
+      max-width: 1200px;
       padding: 20px;
-      border-radius: 8px;
+      background-color: white;
+      margin: 20px 0;
+      border-radius: 10px;
       box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-      margin-bottom: 20px;
     }
 
-    .user-details p {
-      font-size: 1.1rem;
-      line-height: 1.6;
-      margin-bottom: 10px;
-    }
-
-    .user-details p strong {
-      color: #007bff;
+    .table-container {
+      margin-top: 30px;
     }
 
     /* Table Styles */
     table {
       width: 100%;
-      margin-top: 30px;
       border-collapse: collapse;
+      margin-top: 20px;
       box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
     }
 
@@ -85,10 +79,38 @@
       background-color: #f1f1f1;
     }
 
+    /* Status Button */
+    .status-btn {
+      padding: 6px 12px;
+      border-radius: 5px;
+      color: white;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .approve {
+      background-color: #28a745;
+    }
+
+    .approve:hover {
+      background-color: #218838;
+      transform: scale(1.05);
+    }
+
+    .reject {
+      background-color: #dc3545;
+    }
+
+    .reject:hover {
+      background-color: #c82333;
+      transform: scale(1.05);
+    }
+
     /* Action Button */
     a {
       text-decoration: none;
-      padding: 8px 12px;
+      padding: 10px 15px;
       background-color: #007bff;
       color: white;
       border-radius: 5px;
@@ -119,16 +141,6 @@
       background-color: #218838;
     }
 
-    /* Container to center content */
-    .table-container {
-      width: 100%;
-      max-width: 1200px;
-      margin: 20px 0;
-      padding: 20px;
-      background-color: #fff;
-      border-radius: 8px;
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-    }
   </style>
 </head>
 
@@ -136,38 +148,91 @@
 
   <h1>User Details</h1>
 
-  <div class="table-container">
+  <div class="content-container">
     {% if error %}
     <div class="error">{{ error }}</div>
     {% endif %}
 
-    <!-- User Details Section -->
-    <div class="user-details">
+    <!-- User Details Table -->
+    <div class="table-container">
       <h2>Basic Information</h2>
-      <p><strong>Policy Type:</strong> {{userdetails[1]}} </p>
-      <p><strong>Wallet:</strong> {{userdetails[0]}}</p>
-      <p><strong>Policy ID:</strong> {{userdetails[2]}} </p>
-      <p><strong>Aadhaar Number:</strong> {{userdetails[3]}}</p>
-      <p><strong>Phone Number:</strong> {{userdetails[4]}}</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Policy Type</th>
+            <th>Wallet</th>
+            <th>Policy ID</th>
+            <th>Aadhaar Number</th>
+            <th>Phone Number</th>
+            <th>Status</th>
+            {% if is_admin %}
+            <th>Action</th>
+            {% endif %}
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{ userdetails[1] }}</td>
+            <td>{{ userdetails[0] }}</td>
+            <td>{{ userdetails[2] }}</td>
+            <td>{{ userdetails[3] }}</td>
+            <td>{{ userdetails[4] }}</td>
+            <td>{{ application_status }}</td>
+            {% if is_admin %}
+            <td>
+              <a href="/approve/{{ userdetails[2] }}" class="status-btn approve">Approve</a>
+              <a href="/reject/{{ userdetails[2] }}" class="status-btn reject">Reject</a>
+            </td>
+            {% endif %}
+          </tr>
+        </tbody>
+      </table>
     </div>
 
-    <!-- Nominee Details Section -->
-    <div class="user-details">
+    <!-- Nominee Details Table -->
+    <div class="table-container">
       <h2>Nominee Details</h2>
-      <p><strong>Nominee Name:</strong>{{nomineedetails[1]}} </p>
-      <p><strong>Nominee Aadhaar:</strong> {{nomineedetails[2]}}</p>
-      <p><strong>Nominee Phone:</strong> {{nomineedetails[3]}} </p>
+      <table>
+        <thead>
+          <tr>
+            <th>Nominee Name</th>
+            <th>Nominee Aadhaar</th>
+            <th>Nominee Phone</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{ nomineedetails[1] }}</td>
+            <td>{{ nomineedetails[2] }}</td>
+            <td>{{ nomineedetails[3] }}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
 
-    <div class="user-details">
-        <h2>Bank Details</h2>
-        <p><strong>Bank Name:</strong> {{bankdetails[1]}}</p>
-        <p><strong>Bank Account No:</strong> {{bankdetails[2]}} </p>
-        <p><strong>Bank IFSC Code:</strong> {{bankdetails[3]}}</p>
-      </div>
+    <!-- Bank Details Table -->
+    <div class="table-container">
+      <h2>Bank Details</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Bank Name</th>
+            <th>Bank Account No</th>
+            <th>Bank IFSC Code</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{ bankdetails[1] }}</td>
+            <td>{{ bankdetails[2] }}</td>
+            <td>{{ bankdetails[3] }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
-    <!-- Police Details Section -->
-    <div class="user-details">
+    <!-- Police Details Table -->
+    <div class="table-container">
       <h2>Police Submission Details</h2>
       <table>
         <thead>
@@ -180,19 +245,22 @@
         </thead>
         <tbody>
           <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td><a href="" target="_blank">View Photo</a></td>
+            <td>{{policedetails[1]}}</td>
+            <td>{{policedetails[2]}}</td>
+            <td>{{policedetails[3]}}</td>
+            <td>
+              <a href="{{ url_for('static', filename=policedetails[4].replace('static/', '').replace('\\', '/')) }}"
+                  target="_blank" >View Photo
+              </a>
+            </td>
           </tr>
         </tbody>
       </table>
     </div>
 
-    <!-- Hospital Details Section -->
-    <div class="user-details">
+    <!-- Hospital Details Table -->
+    <div class="table-container">
       <h2>Hospital Submission Details</h2>
-      {% if hospital_details %}
       <table>
         <thead>
           <tr>
@@ -203,19 +271,18 @@
           </tr>
         </thead>
         <tbody>
-          {% for hospital in hospital_details %}
           <tr>
-            <td>{{ hospital.policy_id }}</td>
-            <td>{{ hospital.patient_name }}</td>
-            <td>{{ hospital.contact_info }}</td>
-            <td><a href="" target="_blank">View Report</a></td>
+            <td>{{ hospitaldetails[1] }}</td>
+            <td>{{ hospitaldetails[2] }}</td>
+            <td>{{ hospitaldetails[3] }}</td>
+            <td>
+              <a href="{{ url_for('static', filename=hospitaldetails[4].replace('static/', '').replace('\\', '/')) }}"
+                  target="_blank" >View Photo
+              </a>
+            </td>
           </tr>
-          {% endfor %}
         </tbody>
       </table>
-      {% else %}
-      <p>No hospital details available.</p>
-      {% endif %}
     </div>
 
     <!-- Back Button -->
