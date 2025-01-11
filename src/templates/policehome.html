@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Police Dashboard - Home</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: linear-gradient(60deg, #6a5acd, #dcdcdc);
+            height: 100vh;
+        }
+
+        .header {
+            width: 100%;
+            background-color: #fff;
+            padding: 15px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 100;
+        }
+
+        .navbar-brand {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #4b0082;
+        }
+
+        .navbar-nav {
+            display: flex;
+            margin-right: 20px;
+        }
+
+        .navbar-nav a {
+            text-decoration: none;
+            margin: 0 10px;
+            color: #333;
+            font-size: 1rem;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .navbar-nav a:hover {
+            background-color: #4b0082;
+            color: white;
+        }
+
+        .main-container {
+            margin-top: 100px;
+            padding: 20px;
+            width: 100%;
+            max-width: 1200px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #4b0082;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .card h3 {
+            margin: 0 0 10px;
+            color: #4b0082;
+        }
+
+        .card p {
+            margin: 0 0 15px;
+            color: #555;
+        }
+
+        .card a {
+            text-decoration: none;
+            padding: 10px 20px;
+            background-color: #4b0082;
+            color: white;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .card a:hover {
+            background-color: #2e0854;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <div class="navbar-brand">Police Dashboard</div>
+        <div class="navbar-nav">
+            <a href="/policeHome">Home</a>
+            <a href="/upload/police-details">Upload FIR</a>
+            <a href="/police/reports">FIR Reports</a>
+            <a href="/logout">Logout</a>
+        </div>
+    </div>
+
+    <div class="main-container">
+        <h1>Welcome to the Police Dashboard</h1>
+        <p>Your central hub for managing police reports and FIRs efficiently.</p>
+
+        <div class="cards">
+            <div class="card">
+                <h3>Upload FIR Details</h3>
+                <p>Submit and manage First Information Reports (FIR) quickly and securely.</p>
+                <a href="/upload/police-details">Upload FIR</a>
+            </div>
+            <div class="card">
+                <h3>View FIR Reports</h3>
+                <p>Access and analyze detailed FIR reports and related information.</p>
+                <a href="/police/reports">View FIR Reports</a>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

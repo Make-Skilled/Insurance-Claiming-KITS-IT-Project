@@ -91,7 +91,7 @@ def loginForm():
             if session['userrole']=='user':
                 return redirect('/userDashboard')
             elif session['userrole']=='police':
-                return redirect('/policeDashboard')
+                return redirect('/policeHome')
             elif session['userrole']=='hospital':
                 return redirect('/hospitalDashboard')
             return render_template('login.html',message='success')
@@ -276,15 +276,62 @@ def viewApplicationDetails(wallet):
 
     return render_template('admindashboard.html',userdetails=userdetails,nomineedetails=nomineedetails,bankdetails=bankdetails,certificatedetails=certificatedetails)
 
-@app.route('/policeDashboard')
-def policeDashboard():
+@app.route('/policeHome')
+def policeHome():
+    return render_template('policehome.html')
+
+@app.route('/upload/police-details',methods=["GET","POST"])
+def uploadPoliceDetails():
+    if request.method == "GET":
+        contract,web3=connectWithContract(0,InsuranceClaimArtifactPath)
+        response=contract.functions.viewAllUserDetails().call()
+        policyIds=[]
+        for i in response:
+            policyIds.append(i[2])
+        print(policyIds)
+        return render_template('police_dashboard.html',policy_ids=policyIds)
+
+    if request.method == "POST":
+        policy_id = request.form['policy_id']
+        full_name = request.form['full_name']
+        contact_info = request.form['contact_info']
+        photo = request.files['user_photo']
+
+        if not policy_id or not full_name or not contact_info or not photo:
+            return render_template('police_dashboard.html', error="All fields are required."), 400
+
+        # Secure and save the uploaded photo in the 'hospital' folder inside the UPLOAD_FOLDER
+        police_folder = os.path.join(app.config['UPLOAD_FOLDER'], session['userrole'])
+        # Create the 'hospital' folder if it doesn't exist
+        if not os.path.exists(police_folder):
+            os.makedirs(police_folder)
+        
+        filename = secure_filename(photo.filename)
+        photo_path = os.path.join(police_folder, filename)  # Save inside 'hospital' folder
+        photo.save(photo_path)
+
+        # Assuming we want to hash the photo for verification later
+        photo.seek(0)  # Reset the file pointer
+        photo_hash = hashlib.sha256(photo.read()).hexdigest()
+        wallet=session['userwallet']
+        print(wallet)
+        contract,web3=connectWithContract(wallet,InsuranceClaimArtifactPath)
+        try:
+            tx_hash=contract.functions.addPoliceDetails(wallet,policy_id,full_name,contact_info,photo_path,photo_hash).transact()
+            web3.eth.waitForTransactionReceipt(tx_hash)
+            print(tx_hash)
+            return render_template('police_dashboard.html',message="Uploaded Files successfully.")
+        except:
+            return render_template('police_dashboard.html',message="Problem uploading files.")
+
+@app.route('/police/reports')
+def viewPoliceReports():
     contract,web3=connectWithContract(0,InsuranceClaimArtifactPath)
-    response=contract.functions.viewAllUserDetails().call()
-    policyIds=[]
-    for i in response:
-        policyIds.append(i[2])
-    print(policyIds)
-    return render_template('police_dashboard.html',policy_ids=policyIds)
+    reports = contract.functions.viewAllPoliceDetails().call()
+    print(reports)
+    return render_template('policereports.html',reports=reports)
+
+
 
 if __name__=="__main__":
     app.run(host='0.0.0.0',port=9000,debug=True)

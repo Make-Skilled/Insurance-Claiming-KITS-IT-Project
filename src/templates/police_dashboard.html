@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Police Dashboard</title>
+    <title>Police Dashboard - Upload Details</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -12,68 +13,157 @@
             align-items: center;
             height: 100vh;
             margin: 0;
-            background: linear-gradient(60deg, #3a9bdc, #cbb0b0);
+            background: linear-gradient(60deg, #6a5acd, #dcdcdc);
+            color: #333;
         }
+
+        .header {
+            width: 100%;
+            background-color: #fff;
+            padding: 15px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 100;
+        }
+
+        .navbar-brand {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #4b0082;
+        }
+
+        .navbar-nav {
+            display: flex;
+            margin-right: 20px;
+        }
+
+        .navbar-nav a {
+            text-decoration: none;
+            margin: 0 10px;
+            color: #333;
+            font-size: 1rem;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .navbar-nav a:hover {
+            background-color: #4b0082;
+            color: white;
+        }
+
         .container {
             background: #fff;
-            padding: 20px;
+            padding: 20px 30px;
             border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             max-width: 500px;
             width: 100%;
         }
+
         h2 {
             text-align: center;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+            color: #4b0082;
         }
+
         form {
             display: flex;
             flex-direction: column;
         }
+
+        label {
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        select, 
         input[type="text"], 
         input[type="file"] {
             margin-bottom: 15px;
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 4px;
+            font-size: 1rem;
+            width: 100%;
+            box-sizing: border-box; /* Ensure consistent box model */
+            height: 40px; /* Enforce consistent height for inputs and select */
         }
+
+        input[type="file"] {
+            padding: 5px; /* Adjust padding for file input */
+        }
+
         button {
-            background: #007bff;
+            background: #4b0082;
             color: #fff;
-            padding: 10px;
+            padding: 12px;
+            font-size: 1rem;
+            font-weight: bold;
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            transition: background 0.3s ease;
+            transition: background 0.3s ease, transform 0.2s ease;
         }
+
         button:hover {
             background: #0056b3;
+            transform: translateY(-2px);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .note {
+            font-size: 0.9rem;
+            color: #555;
+            margin-top: 10px;
+            text-align: center;
         }
     </style>
 </head>
+
 <body>
+    <div class="header">
+        <div class="navbar-brand">Police Dashboard</div>
+        <div class="navbar-nav">
+            <a href="/policeHome">Home</a>
+            <a href="/upload/police-details">Upload FIR</a>
+            <a href="/police/reports">FIR Reports</a>
+            <a href="/logout">Logout</a>
+        </div>
+    </div>
     <div class="container">
-        <h2>Upload User Details</h2>
+        <h2>Upload Police Details</h2>
         <form action="/upload/police-details" method="POST" enctype="multipart/form-data">
+            <label for="policy_id">Policy ID:</label>
             <select id="policy_id" name="policy_id" required>
                 <option value="" disabled selected>Select a Policy ID</option>
                 {% for policy_id in policy_ids %}
                     <option value="{{ policy_id }}">{{ policy_id }}</option>
                 {% endfor %}
             </select>
-            
+
             <label for="full_name">Full Name:</label>
             <input type="text" id="full_name" name="full_name" placeholder="Enter Full Name" required>
-            
+
             <label for="contact_info">Contact Info:</label>
             <input type="text" id="contact_info" name="contact_info" placeholder="Enter Contact Info" required>
-            
+
             <label for="user_photo">Upload Photo:</label>
             <input type="file" id="user_photo" name="user_photo" accept="image/*" required>
-            
+
             <button type="submit">Upload Details</button>
         </form>
+        <span style="color: rgb(14, 14, 16);">{{ message }}</span>
+        <p class="note">Ensure all fields are filled before submitting.</p>
     </div>
 </body>
-</html>
 
+</html>

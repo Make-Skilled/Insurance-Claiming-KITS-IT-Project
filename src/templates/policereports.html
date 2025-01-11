@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Police Reports</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(60deg, #6a5acd, #dcdcdc);
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            color: #4b0082;
+        }
+
+        .report-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px auto;
+            background: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .report-table th,
+        .report-table td {
+            padding: 15px;
+            text-align: left;
+            border: 1px solid #ccc;
+        }
+
+        .report-table th {
+            background-color: #4b0082;
+            color: white;
+        }
+
+        .report-table tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        img {
+            max-width: 100px;
+            max-height: 100px;
+            border-radius: 8px;
+        }
+
+        .no-reports {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #555;
+        }
+
+        .back-button {
+            display: inline-block;
+            padding: 12px 24px;
+            margin-top: 20px;
+            background-color: #4b0082;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .back-button:hover {
+            background-color: #6a5acd;
+        }
+
+        /* Center the button at the bottom of the page */
+        .button-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <h1>Police Uploaded Reports</h1>
+        {% if error %}
+        <p class="no-reports">{{ error }}</p>
+        {% elif reports and reports|length > 0 %}
+        <table class="report-table">
+            <thead>
+                <tr>
+                    <th>Policy ID</th>
+                    <th>Full Name</th>
+                    <th>Contact Info</th>
+                    <th>Photo</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for report in reports %}
+                <tr>
+                    <td>{{ report[1] }}</td>
+                    <td>{{ report[2] }}</td>
+                    <td>{{ report[3] }}</td>
+                    <td>
+                        <a href="{{ url_for('static', filename=report[4].replace('static/', '').replace('\\', '/')) }}"
+                            target="_blank">
+                            <img src="{{ url_for('static', filename=report[4].replace('static/', '').replace('\\', '/')) }}"
+                                alt="User Photo" style="width: 100px; height: auto;">
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p class="no-reports">No reports have been uploaded yet.</p>
+        {% endif %}
+    </div>
+
+    <!-- Centered Back Button -->
+    <div class="button-container">
+        <a href="/policeHome" class="back-button">Back to Admin Home</a>
+    </div>
+
+</body>
+
+</html>

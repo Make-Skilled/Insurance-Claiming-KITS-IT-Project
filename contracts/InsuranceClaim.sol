@@ -56,12 +56,30 @@ contract InsuranceClaim {
     address[] certificateAddresses;
 
     struct PoliceDetails{
+      address _wallet;
       string _policyId;
       string _policeName;
       string _policeContactNumber;
       string _policeFIRPath;
       string _policeFIRHash;
+      bool _exist;
     }
+
+    mapping(address => PoliceDetails) policeDetails;
+    address[] policeAddresses;
+
+    struct HospitalDetails{
+      address _wallet;
+      string _policyId;
+      string _doctorName;
+      string _doctorContactNumber;
+      string _doctorreportPath;
+      string _doctorreportHash; 
+      bool _exist;
+    }
+
+    mapping(address => HospitalDetails) hospitalDetails;
+    address[] hospitalAddresses;
 
     // UserDetails Functions
     function addUserDetails(
@@ -182,6 +200,81 @@ contract InsuranceClaim {
             certificateArray[i] = certificates[certificateAddresses[i]];
         }
         return certificateArray;
+    }
+
+    function addPoliceDetails(
+        address wallet,
+        string memory policyId,
+        string memory policeName,
+        string memory policeContactNumber,
+        string memory policeFIRPath,
+        string memory policeFIRHash
+    ) public {
+        require(!policeDetails[wallet]._exist, "Details Already Existed");
+
+        PoliceDetails memory new_police = PoliceDetails(
+            wallet,
+            policyId,
+            policeName,
+            policeContactNumber,
+            policeFIRPath,
+            policeFIRHash,
+            true
+        );
+        policeDetails[wallet] = new_police;
+        policeAddresses.push(wallet);
+    }
+
+    function viewPoliceDetailsByWallet(address wallet) public view returns (PoliceDetails memory) {
+        require(policeDetails[wallet]._exist, "No record with this wallet");
+        return policeDetails[wallet];
+    }
+
+    function viewAllPoliceDetails() public view returns (PoliceDetails[] memory) {
+        PoliceDetails[] memory policeArray = new PoliceDetails[](policeAddresses.length);
+
+        for (uint i = 0; i < policeAddresses.length; i++) {
+            policeArray[i] = policeDetails[policeAddresses[i]];
+        }
+        return policeArray;
+    }
+
+    // HospitalDetails Functions
+    function addHospitalDetails(
+        address wallet,
+        string memory policyId,
+        string memory doctorName,
+        string memory doctorContactNumber,
+        string memory doctorReportPath,
+        string memory doctorReportHash
+    ) public {
+        require(!hospitalDetails[wallet]._exist, "Details Already Existed");
+
+        HospitalDetails memory new_hospital = HospitalDetails(
+            wallet,
+            policyId,
+            doctorName,
+            doctorContactNumber,
+            doctorReportPath,
+            doctorReportHash,
+            true
+        );
+        hospitalDetails[wallet] = new_hospital;
+        hospitalAddresses.push(wallet);
+    }
+
+    function viewHospitalDetailsByWallet(address wallet) public view returns (HospitalDetails memory) {
+        require(hospitalDetails[wallet]._exist, "No record with this wallet");
+        return hospitalDetails[wallet];
+    }
+
+    function viewAllHospitalDetails() public view returns (HospitalDetails[] memory) {
+        HospitalDetails[] memory hospitalArray = new HospitalDetails[](hospitalAddresses.length);
+
+        for (uint i = 0; i < hospitalAddresses.length; i++) {
+            hospitalArray[i] = hospitalDetails[hospitalAddresses[i]];
+        }
+        return hospitalArray;
     }
 }
 

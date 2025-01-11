@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<br lang="en">
 
 <head>
   <meta charset="UTF-8">
@@ -63,7 +63,7 @@
     a {
       text-decoration: none;
       padding: 8px 12px;
-      background-color: #007bff;
+      /* background-color: #007bff; */
       color: white;
       border-radius: 5px;
       transition: background-color 0.3s ease, transform 0.2s ease;
@@ -84,12 +84,113 @@
       border-radius: 8px;
       box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
     }
+
+    /* Header / Navbar */
+    .header {
+      width: 100%;
+      background-color: #fff;
+      padding: 15px 20px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 100;
+    }
+
+    .navbar-brand {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #0056b3;
+      display: flex;
+      align-items: center;
+    }
+
+    .navbar-brand img {
+      width: 30px;
+      margin-right: 10px;
+    }
+
+    .navbar-nav {
+      display: flex;
+      align-items: center;
+      margin-right: 20px;
+    }
+
+    .navbar-nav a {
+      text-decoration: none;
+      padding: 10px 20px;
+      color: #333;
+      font-size: 1.1rem;
+      margin: 0 20px;
+      border-radius: 40px;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .navbar-nav a:hover {
+      /* background-color: #0056b3; */
+      color: white;
+    }
+
+    /* Responsive Navbar */
+    @media (max-width: 768px) {
+      .navbar-nav {
+        flex-direction: column;
+        align-items: flex-start;
+        background-color: #fff;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        right: 0;
+        display: none;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        z-index: 99;
+      }
+
+      .navbar-nav a {
+        width: 100%;
+        text-align: left;
+        padding: 15px 20px;
+      }
+
+      .navbar-nav.open {
+        display: flex;
+      }
+
+      .navbar-toggle {
+        display: block;
+        background-color: transparent;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: #333;
+      }
+    }
+
+    @media (min-width: 769px) {
+      .navbar-toggle {
+        display: none;
+      }
+    }
   </style>
 </head>
+  <div class="header">
+    <div class="navbar-brand">
+      Admin Dashboard
+    </div>
+    <button class="navbar-toggle" onclick="toggleNavbar()">☰</button>
+    <div class="navbar-nav">
+      <a href="/adminDashboard">Home</a>
+      <a href="/logout">Logout</a>
+    </div>
+  </div>
+</br>
 
-<body>
-
-  <h1>Admin Home</h1>
+  <div>
+    <h1>Admin Home</h1>
+  </div>
 
   <div class="table-container">
     {% if error %}
@@ -111,19 +212,25 @@
       <tbody>
         {% for i in range(l) %}
         <tr>
-          <td>{{ i+1 }}</td> <!-- Use loop.index to display the index of the loop -->
+          <td>{{ i+1 }}</td>
           <td>{{ data[i][0] }}</td>
           <td>{{ data[i][1] }}</td>
           <td>{{ data[i][2] }}</td>
           <td>{{ data[i][3] }}</td>
           <td>{{ data[i][4] }}</td>
-          <td><a href="viewApplicationDetails/{{data[i][0]}}"> Click</a></td> 
+          <td><a href="viewApplicationDetails/{{ data[i][0] }}">Click</a></td>
         </tr>
         {% endfor %}
       </tbody>
     </table>
   </div>
 
+  <script>
+    function toggleNavbar() {
+      const nav = document.querySelector('.navbar-nav');
+      nav.classList.toggle('open');
+    }
+  </script>
 </body>
 
 </html>
