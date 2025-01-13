@@ -419,9 +419,9 @@ def approve_application(wallet):
         contract, web3 = connectWithContract(0, InsuranceClaimArtifactPath)
         txn_hash = contract.functions.updateApplicationStatus(wallet, "Approved").transact()
         web3.eth.wait_for_transaction_receipt(txn_hash)
-        return render_template('admindashboard.html', message="Application approved successfully!")
+        return redirect("/viewApplicationDetails/<wallet>/<policyId>")
     except Exception as e:
-        return render_template('admindashboard.html', message="Error approving application: {str(e)}")
+        return redirect("/viewApplicationDetails/<wallet>/<policyId>")
 
 @app.route('/reject/<wallet>', methods=['GET'])
 def reject_application(wallet):
@@ -429,9 +429,9 @@ def reject_application(wallet):
         contract, web3 = connectWithContract(0, InsuranceClaimArtifactPath)
         txn_hash = contract.functions.updateApplicationStatus(wallet, "Rejected").transact()
         web3.eth.wait_for_transaction_receipt(txn_hash)
-        return render_template('admindashboard.html', message="Application approved successfully!")
+        return redirect("/viewApplicationDetails/<wallet>/<policyId>")
     except Exception as e:
-        return render_template('admindashboard.html', message=f"Error approving application: {str(e)}")
+        return redirect("/viewApplicationDetails/<wallet>/<policyId>")
         
 if __name__=="__main__":
     app.run(host='0.0.0.0',port=9000,debug=True)
