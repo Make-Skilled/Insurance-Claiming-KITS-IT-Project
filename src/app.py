@@ -51,6 +51,34 @@ def loginPage():
 def signupPage():
     return render_template('signup.html')
 
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
+@app.route('/contact')
+def contact():
+    return render_template('contact.html')
+
+@app.route('/feature')
+def feature():
+    return render_template('feature.html')
+
+@app.route('/service')
+def service():
+    return render_template('service.html')
+
+@app.route('/team')
+def Team():
+    return render_template('team.html')
+
+@app.route('/Terms')
+def Terms():
+    return render_template('Teams and Conditions.html')
+
+@app.route('/testimonial')
+def Testimonial():
+    return render_template('testimonial.html')
+
 @app.route('/register',methods=['POST']) # page (1 Route), page (2 Route)
 def register():
     role=request.form['role']
@@ -123,9 +151,11 @@ def uploadUserDetails():
     try:
         tx_hash=contract.functions.addUserDetails(wallet,insuranceType,policyId,adharNumber,phoneNumber).transact()
         web3.eth.waitForTransactionReceipt(tx_hash)
-        return render_template('Lifeinsurance.html',message='User Details Added Successfully')
+        message='User Details Added Successfully'
+        return render_template('Lifeinsurance.html',message=message)
     except:
-        return render_template('Lifeinsurance.html',message='Problem adding details')
+        message='Problem adding details'
+        return render_template('Lifeinsurance.html',message=message)
 
 @app.route('/upload/nominee-details',methods=['POST'])
 def uploadNomineeDetails():
@@ -139,9 +169,11 @@ def uploadNomineeDetails():
     try:
         tx_hash=contract.functions.addNomineeDetails(wallet,nomineeName,nomineeAdharNumber,nomineePhoneNumber).transact()
         web3.eth.waitForTransactionReceipt(tx_hash)
-        return render_template('Lifeinsurance.html',message1='Nominee Details Added')
+        message='Nominee Details Added'
+        return render_template('Lifeinsurance.html',message=message)
     except:
-        return render_template('Lifeinsurance.html',message1='Problem adding Nominee Details')
+        message='Problem adding Nominee Details'
+        return render_template('Lifeinsurance.html',message=message)
 
 @app.route('/upload/bank-details',methods=['POST'])
 def uploadBankDetails():
@@ -156,9 +188,11 @@ def uploadBankDetails():
     try:
         tx_hash=contract.functions.addBankDetails(wallet,bankName,accountNumber,ifscCode).transact()
         web3.eth.waitForTransactionReceipt(tx_hash)
-        return render_template('Lifeinsurance.html',message2='Bank Details Added')
+        message='Bank Details Added'
+        return render_template('Lifeinsurance.html',message=message)
     except:
-        return render_template('Lifeinsurance.html',message2='Problem adding Bank Details')
+        message='Problem adding Bank Details'
+        return render_template('Lifeinsurance.html',message=message)
 
 
 @app.route('/upload/certificate-upload',methods=['POST'])
@@ -202,10 +236,11 @@ def uploadCertificateDetails():
     try:
         tx_hash=contract.functions.addCertificateDetails(wallet,policy_photo_path,policy_photo_hash,reports_path,reports_hash).transact()
         web3.eth.waitForTransactionReceipt(tx_hash)
-
-        return render_template('Lifeinsurance.html', message3="Uploaded Files successfully.")
+        message="Uploaded Files successfully."
+        return render_template('Lifeinsurance.html', message=message)
     except:
-        return render_template('Lifeinsurance.html', message3="Problem uploading files.")
+        message="Problem uploading files."
+        return render_template('Lifeinsurance.html', message=message)
     
 
 @app.route('/user-status')
@@ -419,7 +454,7 @@ def approve_application(wallet):
         contract, web3 = connectWithContract(0, InsuranceClaimArtifactPath)
         txn_hash = contract.functions.updateApplicationStatus(wallet, "Approved").transact()
         web3.eth.wait_for_transaction_receipt(txn_hash)
-        return redirect("/viewApplicationDetails/<wallet>/<policyId>")
+        return redirect("/adminDashboard")
     except Exception as e:
         return redirect("/viewApplicationDetails/<wallet>/<policyId>")
 
@@ -429,7 +464,7 @@ def reject_application(wallet):
         contract, web3 = connectWithContract(0, InsuranceClaimArtifactPath)
         txn_hash = contract.functions.updateApplicationStatus(wallet, "Rejected").transact()
         web3.eth.wait_for_transaction_receipt(txn_hash)
-        return redirect("/viewApplicationDetails/<wallet>/<policyId>")
+        return redirect("/adminDashboard")
     except Exception as e:
         return redirect("/viewApplicationDetails/<wallet>/<policyId>")
         
